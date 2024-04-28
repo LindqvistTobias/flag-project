@@ -1,0 +1,6 @@
+.filter-cont {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 25px auto;    
+  }
