@@ -49,39 +49,4 @@ const HomePage = () => {
 
 }
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const HomePage = () => {
-
-//   const [selectedRegion, setSelectedRegion] = useState('');
-
-//   const handleRegionChange = (region) => {
-//     setSelectedRegion(region);
-//   };
-
-//   return (
-//     <main>
-//         <div className='filter-container'>
-//           <SearchBar />
-//           <RegionDropdown onRegionChange={handleRegionChange} />
-//           {selectedRegion && <CountryCard selectedRegion={selectedRegion} />}
-//         </div>        
-//         <CountryCard />
-//     </main>
-//   );
-// };
-
 export default HomePage;
