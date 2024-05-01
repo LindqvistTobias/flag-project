@@ -1,52 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import './HomePage.css'
+import './HomePage.css';
 import CountryCard from '../components/CountryCard';
 import SearchBar from '../components/SearchBar';
 import RegionDropdown from '../components/RegionDropdown';
 import { getAllCountriesByRegion, searchCountriesByName } from '../components/Api';
 
-
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Fetch all countries initially
-    getAllCountriesByRegion('all')
-      .then(data => {
+    const fetchCountries = async () => {
+      try {
+        const data = await getAllCountriesByRegion(selectedRegion);
         setCountries(data);
-        setFilteredCountries(data);
-      })
-      .catch(error => console.error('Error fetching countries', error));
-  }, []);
+      } catch (error) {
+        console.error('Error fetching countries', error);
+      }
+    };
 
-  const handleSearch = (searchQuery) => {
-    if (!searchQuery) {
-      setFilteredCountries(countries); // Reset to all countries if search is empty
-    } else {
-      const filtered = searchCountriesByName(countries, searchQuery);
-      setFilteredCountries(filtered);
-    }
+    fetchCountries();
+  }, [selectedRegion]);
+
+  useEffect(() => {
+    const filteredCountries = searchCountriesByName(countries, searchQuery).filter(country => {
+      return selectedRegion === 'all' || country.region === selectedRegion;
+    });
+    setFilteredCountries(filteredCountries);
+  }, [searchQuery, selectedRegion, countries]);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
-  const handleRegionChange = (selectedRegion) => {
-    getAllCountriesByRegion(selectedRegion)
-      .then(data => {
-        setFilteredCountries(data);
-      })
-      .catch(error => console.error('Error fetching countries by region', error));
+  const handleRegionChange = (region) => {
+    setSelectedRegion(region);
   };
-
+  
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
       <RegionDropdown onRegionChange={handleRegionChange} />
       <div className="country-grid">
-        <CountryCard countries={filteredCountries} />
+        <CountryCard countries={filteredCountries} allCountries={countries} />
       </div>
     </div>
   );
+};
 
-}
 
 export default HomePage;
