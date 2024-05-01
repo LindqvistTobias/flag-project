@@ -4,7 +4,7 @@ import HomePage from './routes/HomePage';
 import CountryPage from './routes/CountryPage';
 import Navbar from './components/Navbar';
 
-const App = () => {
+const App = () => { 
   return (
     <Router>
       

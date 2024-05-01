@@ -1,6 +1,10 @@
-.filter-cont {
+.filter-container {
     display: flex;
     justify-content: space-between;
     width: 1200px;
     margin: 25px auto;    
+  }
+
+  .country-card-container {
+    display: flex;
   }
