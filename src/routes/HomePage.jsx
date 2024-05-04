@@ -40,9 +40,11 @@ const HomePage = () => {
   };
   
   return (
-    <div>
-      <SearchBar onSearch={handleSearch} />
-      <RegionDropdown onRegionChange={handleRegionChange} />
+    <div className='body-container'>
+      <div className='searchbar-dropdown-container'>
+        <SearchBar onSearch={handleSearch} />
+        <RegionDropdown onRegionChange={handleRegionChange} />
+      </div>
       <div className="country-grid">
         <CountryCard countries={filteredCountries} allCountries={countries} />
       </div>

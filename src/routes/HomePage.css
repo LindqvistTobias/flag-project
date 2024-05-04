@@ -1,10 +1,19 @@
-.filter-container {
-    display: flex;
-    justify-content: space-between;
-    width: 1200px;
-    margin: 25px auto;    
-  }
+.body-container {
+  display: flex;
+  width: 1200px;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
 
-  .country-card-container {
-    display: flex;
-  }
+.searchbar-dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  margin: 20px 0px;
+}
+ 
+.country-grid {
+  display: flex;  
+  flex-flow: wrap;
+}

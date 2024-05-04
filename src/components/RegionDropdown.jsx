@@ -7,8 +7,9 @@ const RegionDropdown = ({ onRegionChange }) => {
     onRegionChange(selectedRegion);
   };
 
-  return (
-    <select onChange={handleSelectChange}>
+  return (    
+    <div className="dropdown-container">
+      <select onChange={handleSelectChange}>
       <option value="all">All</option>
       <option value="Africa">Africa</option>
       <option value="Americas">Americas</option>
@@ -16,6 +17,7 @@ const RegionDropdown = ({ onRegionChange }) => {
       <option value="Europe">Europe</option>
       <option value="Oceania">Oceania</option>
     </select>
+    </div>
   );
 };
 

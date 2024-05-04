@@ -1,5 +1,8 @@
-img {
-    height: 25px;
+header {
+    width: 100vw;
+    background-color: var(--component-color);
+    position: static;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-cont {
@@ -8,11 +11,32 @@ img {
     align-items: center;    
     width: 1200px;
     height: 70px;
-    margin: auto;
-    border-bottom: white solid 2px;
+    margin: auto;   
+    
 }
 
+img {
+    height: 25px;
+    
+}
+
+.logo {
+    margin-left: -75px;
+}
+
+
+
 .dark-light-mode {
-    height: 30px;
+    background-color: var(--component-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-weight: 600px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 

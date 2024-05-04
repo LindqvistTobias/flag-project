@@ -1,0 +1,17 @@
+.dropdown-container {
+    height: 50px;
+    width: 150px;
+    border: 0.1em solid var(--text-color);
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    border: 0px;
+    color: var(--text-color);
+}
+
+select:hover{
+    cursor: pointer;
+}
