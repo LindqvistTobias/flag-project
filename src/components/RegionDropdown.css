@@ -1,7 +1,29 @@
 .dropdown-container {
     height: 50px;
     width: 150px;
-    border: 0.1em solid var(--text-color);
+    border: 0.1em solid var(--text-color); 
+    position: relative;
+    display: inline-block;      
+}
+
+.dropdown-container:hover{
+    cursor: pointer;
+}
+
+.dropdown-name {
+    width: 100%;
+    height: 100%;
+    position: absolute;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    width: 100%;
+    height: 100%;
+    position: absolute;          
 }
 
 select {
@@ -10,8 +32,4 @@ select {
     background-color: var(--background-color);
     border: 0px;
     color: var(--text-color);
-}
-
-select:hover{
-    cursor: pointer;
 }

@@ -8,11 +8,15 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <input
+    <div className="searchbar-container">
+        <input
       type="text"
       placeholder="Search countries..."
       onChange={handleInputChange}
     />
+    </div>
+
+    
   );
 };
 

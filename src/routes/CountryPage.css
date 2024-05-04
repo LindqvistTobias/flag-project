@@ -6,10 +6,33 @@
     flex-direction: column;
     margin-top: 30px;
     gap: 50px;    
+    color: var(--text-color);
 }
 
-.main-container button{
-    width: 100px;
+#arrow {    
+    width: 1.5em;
+}
+
+.back-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 5.5em;
+    border-radius: 5px;
+    height: 2em;
+    justify-content: center;
+}
+
+.back-container:hover {
+    cursor: pointer;
+    background-color: var(--component-color);
+}
+
+.back-button {    
+    border: none;
+    background-color: transparent;
+    color: var(--text-color);
+    font-weight: 400;
 }
 
 .card-container {
@@ -31,5 +54,28 @@
 }
 
 .border-countries {
-    position: absolute;  
+    position: absolute;
+    display: flex;
+    margin-top: 50px;  
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 3px;
+}
+
+li {
+    width: 100px;
+}
+
+.border {
+    background-color: var(--component-color); 
+    color: var(--text-color);   
+    border-radius: 5px;
+    border: none;    
+}
+
+.border:hover {
+    cursor: pointer;
 }

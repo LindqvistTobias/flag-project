@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './CountryPage.css';
+import arrowLeftWhite from '../assets/arrow-left.svg';
+import arrowLeftDark from '../assets/arrow-left-dark.svg';
 
 const CountryPage = () => {
   const { state } = useLocation();
   const { country, countries } = state || {};
   const navigate = useNavigate();
   const { name } = useParams();
-
+  const [arrowIcon, setArrowIcon] = useState(arrowLeftWhite);
   const [currentCountry, setCurrentCountry] = useState(country);
 
   useEffect(() => {
@@ -16,6 +18,11 @@ const CountryPage = () => {
       setCurrentCountry(matchingCountry);
     }
   }, [countries, name]);
+
+  const getLogoSource = () => {
+    return isDarkMode ? arrowLeftWhite : arrowLeftDark ;
+  };
+
 
   const handleGoBack = () => {
     navigate('/');
@@ -57,7 +64,11 @@ const CountryPage = () => {
 
   return (
     <div className="main-container">
-      <button onClick={handleGoBack}>Go Back</button>
+
+      <div className='back-container' onClick={handleGoBack}>
+        <img src={getLogoSource()} alt="arrow" id='arrow' />
+        <p className='back-button'>BACK</p>
+      </div>
       <div className="card-container">
         <img src={currentCountry.flags.png} alt={`Flag of ${currentCountry.name.common}`} />
         <div className="text-container">
@@ -85,7 +96,7 @@ const CountryPage = () => {
               {currentCountry.borders && currentCountry.borders.length > 0 ? (
                 currentCountry.borders.map((border) => (
                   <li key={border}>
-                    <button onClick={() => handleBorderCountryClick(border)}>
+                    <button className='border' onClick={() => handleBorderCountryClick(border)}>
                       {findCountryByCca3(border)?.name.common || 'Unknown Country'}
                     </button>
                   </li>

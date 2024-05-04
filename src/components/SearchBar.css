@@ -1,7 +1,15 @@
-input {
+.searchbar-container {
     height: 50px;
     width: 300px;
+    
+    
+}
+
+
+input {
+    height: 100%;
+    width: 100%;
     background-color: var(--background-color);
-    border: 0px;
+    border: 1px solid var(--text-color);
     color: var(--text-color);
 }
