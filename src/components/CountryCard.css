@@ -8,18 +8,25 @@
 
 .country-container {
     display: flex;
-    flex-direction: column;       
+    flex-direction: column;
     height: 250px;
     width: 22%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     background-color: var(--component-color);
     margin-top: 0.3em;
     margin-bottom: 1.5em;
-    border-radius: 5px;
-}
+    border-radius: 7px;
+    overflow: hidden; /* Ensure content inside doesn't overflow */
+    position: relative; /* Establish positioning context */
+
+    flex: 0 1 22%;
+    
+    
+  }
 
 .country-container:hover {
     cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.199);
 }
 
 .country-container img {    
@@ -33,3 +40,30 @@
     margin-left: 10px;
     
 }
+
+@media (max-width: 1200px) {
+    .country-container {
+      flex-basis: 30%; /* Show 3 cards per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .country-container {
+      flex-basis: 45%; /* Show 2 cards per row on even smaller screens */
+    }
+    .country-cards-container {
+        width: 75%;
+        justify-content: space-between;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .country-container {
+      flex-basis: 100%; /* Show 1 card per row on mobile devices */
+      width: 250px;
+    }
+
+    .country-cards-container {
+        width: 50%;
+    }
+  }

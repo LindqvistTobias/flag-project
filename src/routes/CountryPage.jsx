@@ -3,14 +3,15 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './CountryPage.css';
 import arrowLeftWhite from '../assets/arrow-left.svg';
 import arrowLeftDark from '../assets/arrow-left-dark.svg';
+import { useDarkMode } from '../../DarkModeContext';
 
 const CountryPage = () => {
   const { state } = useLocation();
   const { country, countries } = state || {};
   const navigate = useNavigate();
-  const { name } = useParams();
-  const [arrowIcon, setArrowIcon] = useState(arrowLeftWhite);
+  const { name } = useParams();  
   const [currentCountry, setCurrentCountry] = useState(country);
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     if (countries) {
@@ -19,8 +20,11 @@ const CountryPage = () => {
     }
   }, [countries, name]);
 
-  const getLogoSource = () => {
-    return isDarkMode ? arrowLeftWhite : arrowLeftDark ;
+  const getArrowIconSource = () => {
+    console.log('isDarkMode:', isDarkMode); 
+    console.log('currentCountry:', currentCountry);
+
+    return isDarkMode ? arrowLeftWhite : arrowLeftDark;
   };
 
 
@@ -66,28 +70,26 @@ const CountryPage = () => {
     <div className="main-container">
 
       <div className='back-container' onClick={handleGoBack}>
-        <img src={getLogoSource()} alt="arrow" id='arrow' />
+        <img src={getArrowIconSource()} alt="arrow" id='arrow' />
         <p className='back-button'>BACK</p>
       </div>
       <div className="card-container">
-        <img src={currentCountry.flags.png} alt={`Flag of ${currentCountry.name.common}`} />
+        <img id='flag-img' src={currentCountry.flags.png} alt={`Flag of ${currentCountry.name.common}`} />
         <div className="text-container">
           <h2>{currentCountry.name.common}</h2>
           <div className="text-info-container">
             <div>
-              <p>Population: {currentCountry.population}</p>
-              <p>Region: {currentCountry.region}</p>
-              <p>Capital: {currentCountry.capital}</p>
-              <p>Native name: {getFirstNativeNameCommon()}</p>
+              <div className='text-info'><p>Population: </p> {currentCountry.population}</div>
+              <div className='text-info'><p>Region: </p> {currentCountry.region}</div>
+              <div className='text-info'><p>Capital: </p> {currentCountry.capital}</div>
+              <div className='text-info'><p>Native name: </p> {getFirstNativeNameCommon()}</div>
             </div>
             <div>
-              <p>Top Level Domain: {currentCountry.tld}</p>
-              <p>
-                Currencies: {Object.keys(currentCountry.currencies || {}).map((currencyCode) => (
+              <div className='text-info'><p>Top Level Domain: </p> {currentCountry.tld}</div>
+              <div className='text-info'><p>Currencies: </p> {Object.keys(currentCountry.currencies || {}).map((currencyCode) => (
                   <span key={currencyCode}>{currentCountry.currencies[currencyCode]?.name || 'Unknown Currency'}</span>
-                ))}
-              </p>
-              <p>Language: {getFirstLanguageName()}</p>
+                ))}</div>
+              <div className='text-info'><p>Language: </p> {getFirstLanguageName()}</div>                        
             </div>
           </div>
           <div className="border-countries">
@@ -97,7 +99,7 @@ const CountryPage = () => {
                 currentCountry.borders.map((border) => (
                   <li key={border}>
                     <button className='border' onClick={() => handleBorderCountryClick(border)}>
-                      {findCountryByCca3(border)?.name.common || 'Unknown Country'}
+                      {border || 'Unknown Country'}
                     </button>
                   </li>
                 ))

@@ -1,10 +1,7 @@
 .searchbar-container {
     height: 50px;
-    width: 300px;
-    
-    
+    width: 300px; 
 }
-
 
 input {
     height: 100%;

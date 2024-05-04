@@ -11,9 +11,36 @@
   justify-content: space-between;
   height: 70px;
   margin: 20px 0px;
+  width: 100%;
 }
  
 .country-grid {
   display: flex;  
   flex-flow: wrap;
+  justify-content: center;  
+}
+
+
+@media (max-width: 1200px) {
+  .body-container {
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+  }
+  .searchbar-dropdown-container {      
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      height: 150px;
+  }    
+}
+
+@media (max-width: 900px) {
+  .searchbar-dropdown-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      height: 150px;
+  }    
 }
