@@ -48,8 +48,7 @@ p {
 
 .card-container {
     display: flex;
-    width: 100%;
-    justify-content: space-between;    
+    width: 100%;       
 }
 
 #flag-img {
@@ -58,19 +57,20 @@ p {
 
 .text-container {
     margin-left: 50px;
-    width: 50%;    
+    width: 50%;
+    display: flex;
+    flex-direction: column;    
 }
 
 .text-info-container {
     display: flex;
-    gap: 25px;
+    gap: 25px;    
 }
 
-.border-countries {
-    position: absolute;
+
+.border-countries {    
     display: flex;
-    margin-top: 70px; 
-    justify-content: center; 
+    margin-top: 70px;     
     align-items: center;
 }
 
@@ -124,5 +124,21 @@ ul {
     #flag-img {
         height: 150px;
         
+    }
+  }
+
+  .loader {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      background-color: lightgray;
     }
   }
