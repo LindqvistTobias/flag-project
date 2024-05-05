@@ -5,6 +5,9 @@ import "./CountryPage.css";
 import arrowLeftWhite from "../assets/arrow-left.svg";
 import arrowLeftDark from "../assets/arrow-left-dark.svg";
 import { useDarkMode } from "../../DarkModeContext";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const CountryPage = () => {
   const navigate = useNavigate();
@@ -68,25 +71,9 @@ const CountryPage = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="main-container">
-        <div className="back-container" onClick={handleGoBack}>
-          <img src={getArrowIconSource()} alt="arrow" id="arrow" />
-          <p className="back-button">BACK</p>
-        </div>
-        <div className="card-container">
-          <div
-            className="loading-flag"
-            style={{ animation: "blink 1s infinite" }}
-          ></div>
-          <div className="text-container">
-            <h2>Loading...</h2>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const toggleLoadingState = () => {
+    setIsLoading((prevLoading) => !prevLoading); // Toggle isLoading state
+  };  
 
   const getFirstNativeNameCommon = () => {
     const { nativeName } = currentCountry?.name || {};
@@ -99,6 +86,8 @@ const getFirstLanguageName = () => {
     return languageEntries.length > 0 ? languageEntries[0][1] || 'Unknown Language' : 'Unknown Language';
 };
 
+
+
   return (
     <div className="main-container">
       <div className="back-container" onClick={handleGoBack}>
@@ -106,43 +95,47 @@ const getFirstLanguageName = () => {
         <p className="back-button">BACK</p>
       </div>
       <div className="card-container">
-        <img
-          id="flag-img"
-          src={currentCountry.flags.png}
-          alt={`Flag of ${currentCountry.name.common}`}
-        />
+        {isLoading ? (
+        <Skeleton width={600} height={300} /> // Display skeleton while loading
+          ) : (
+            <img
+              className="flag-image"
+              src={currentCountry?.flags?.png || ''}
+              alt={`Flag of ${currentCountry?.name?.common || ''}`}
+            />
+          )}
         <div className="text-container">
-          <h2>{currentCountry.name.common}</h2>
+          <h2>{isLoading ? <Skeleton width={150} height={30}/> : currentCountry.name.common}</h2>
           <div className="text-info-container">
             <div className="text-info-small-container">
               <div className="text-info">
-                <p>Population:</p> {currentCountry.population}
+                <p>Population:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.population}
               </div>
               <div className="text-info">
-                <p>Region:</p> {currentCountry.region}
+                <p>Region:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.region} 
               </div>
               <div className="text-info">
-                <p>Capital:</p> {currentCountry.capital}
+                <p>Capital:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry?.capital}
               </div>
               <div className="text-info">
                 <p>Native name:</p>{" "}
-                {getFirstNativeNameCommon()}
+                {isLoading ? <Skeleton width={75} height={15}/> : getFirstNativeNameCommon()}
               </div>
             </div>
             <div className="text-info-small-container">  
               <div>
                 <div className="text-info">
-                  <p>Top Level Domain:</p> {currentCountry.tld}
+                  <p>Top Level Domain:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.tld}
                 </div>
                 <div className="text-info">
                   <p>Currencies:</p>{" "}
-                  {Object.values(currentCountry.currencies || {})
+                  {isLoading ? <Skeleton width={75} height={15}/> : Object.values(currentCountry.currencies || {})
                     .map((currency) => currency.name)
                     .join(", ") || "Unknown Currency"}
                 </div>
                 <div className="text-info">
                   <p>Languages:</p>{" "}
-                  {getFirstLanguageName()}
+                  {isLoading ? <Skeleton width={75} height={15}/> : getFirstLanguageName()}
                 </div>
               </div>
             </div>
@@ -150,24 +143,36 @@ const getFirstLanguageName = () => {
           <div className="border-countries">
             <p>Border Countries:</p>
             <ul>
-              {currentCountry.borders && currentCountry.borders.length > 0 ? (
-                currentCountry.borders.map((border) => (
-                  <li key={border}>
-                    <button
-                      className="border"
-                      onClick={() => handleBorderCountryClick(border)}
-                    >
-                      {border || "Unknown Country"}
-                    </button>
-                  </li>
-                ))
-              ) : (
-                <li>No neighbors</li>
-              )}
+            {isLoading ? (
+                  <Skeleton count={5} width={55} height={30}/> // Display skeleton for borders while loading
+                ) : (
+                  currentCountry.borders && currentCountry.borders.length > 0 ? (
+                    currentCountry.borders.map((border) => (
+                      <li key={border}>
+                        <button
+                          className="border"
+                          onClick={() => handleBorderCountryClick(border)}
+                        >
+                          {border || "Unknown Country"}
+                        </button>
+                      </li>
+                    ))
+                  ) : (
+                    <li>No neighbors</li>
+                  )
+                )}
             </ul>
           </div>
         </div>
+        
       </div>
+
+          <div>
+          <button onClick={toggleLoadingState}>
+            Toggle Loading State
+          </button>
+          </div>
+
     </div>
   );
 };

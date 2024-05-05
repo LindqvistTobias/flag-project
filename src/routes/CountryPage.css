@@ -51,8 +51,10 @@ p {
     width: 100%;       
 }
 
-#flag-img {
+.flag-image {
     height: 300px;
+    max-width: 100%;    
+    object-fit: contain;
 }
 
 .text-container {
@@ -127,18 +129,4 @@ ul {
     }
   }
 
-  .loader {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
   
-  @keyframes blink {
-    50% {
-      background-color: lightgray;
-    }
-  }

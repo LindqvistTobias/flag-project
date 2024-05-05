@@ -1,4 +1,3 @@
-// CountryCard component
 import React from 'react';
 import './CountryCard.css';
 import { useNavigate } from 'react-router-dom';
