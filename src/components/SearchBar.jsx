@@ -1,5 +1,5 @@
-import './SearchBar.css'
-import React from 'react';
+import "./SearchBar.css";
+import React from "react";
 
 const SearchBar = ({ onSearch }) => {
   const handleInputChange = (event) => {
@@ -9,14 +9,13 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="searchbar-container">
-        <input
-      type="text"
-      placeholder="Search countries..."
-      onChange={handleInputChange}
-    />
+      <input
+        type="text"
+        required="required"
+        onChange={handleInputChange}
+      />
+      <span>Search for a country</span>
     </div>
-
-    
   );
 };
 
