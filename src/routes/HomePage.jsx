@@ -8,7 +8,7 @@ import { getAllCountriesByRegion, searchCountriesByName } from '../components/Ap
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState('all');
+  const [selectedRegion, setSelectedRegion] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const filteredCountries = searchCountriesByName(countries, searchQuery).filter(country => {
-      return selectedRegion === 'all' || country.region === selectedRegion;
+      return selectedRegion === 'All' || country.region === selectedRegion;
     });
     setFilteredCountries(filteredCountries);
   }, [searchQuery, selectedRegion, countries]);

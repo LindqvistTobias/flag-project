@@ -1,7 +1,7 @@
 const BASE_URL = 'https://restcountries.com/v3.1';
 
 export const getAllCountriesByRegion = async (region) => {
-  const url = region === 'all' ? `${BASE_URL}/all` : `${BASE_URL}/region/${region}`;
+  const url = region === 'All' ? `${BASE_URL}/all` : `${BASE_URL}/region/${region}`;
 
   try {
     const response = await fetch(url);
