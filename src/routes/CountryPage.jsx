@@ -100,7 +100,7 @@ const getFirstLanguageName = () => {
           ) : (
             <img
               className="flag-image"
-              src={currentCountry?.flags?.png || ''}
+              src={currentCountry?.flags?.svg || ''}
               alt={`Flag of ${currentCountry?.name?.common || ''}`}
             />
           )}
@@ -144,7 +144,7 @@ const getFirstLanguageName = () => {
             <p>Border Countries:</p>
             <ul>
             {isLoading ? (
-                  <Skeleton count={5} width={55} height={30}/> // Display skeleton for borders while loading
+                  <div className="skeleton"><Skeleton count={5} width={55} height={30} /></div>
                 ) : (
                   currentCountry.borders && currentCountry.borders.length > 0 ? (
                     currentCountry.borders.map((border) => (

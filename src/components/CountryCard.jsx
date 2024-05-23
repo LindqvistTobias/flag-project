@@ -2,6 +2,7 @@ import React from 'react';
 import './CountryCard.css';
 import { useNavigate } from 'react-router-dom';
 
+
 const CountryCard = ({ countries, allCountries }) => {
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ const CountryCard = ({ countries, allCountries }) => {
     <div className='country-cards-container'>                       
       {countries.map((country) => (
         <div className='country-container' key={country.name.common} onClick={() => handleClick(country)}>
-          <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />          
+          <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />          
           <div className='country-text-container'>
             <h3>{country.name.common}</h3>
             <p>Population: {country.population}</p>

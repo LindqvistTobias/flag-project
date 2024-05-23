@@ -14,11 +14,7 @@
   width: 100%;
 }
  
-.country-grid {
-  display: flex;  
-  flex-flow: wrap;
-  justify-content: center;  
-}
+
 
 
 @media (max-width: 1200px) {

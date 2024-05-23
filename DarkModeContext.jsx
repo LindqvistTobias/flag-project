@@ -16,7 +16,7 @@ export const DarkModeProvider = ({ children }) => {
     if (darkMode) {
       root.style.setProperty('--background-color', '#202C36');
       root.style.setProperty('--text-color', '#F2F2F2');
-      root.style.setProperty('--component-color', '#2B3844');
+      root.style.setProperty('--component-color', '#435668');
     } else {
       root.style.setProperty('--background-color', '#FFFFFF');
       root.style.setProperty('--text-color', '#333333');

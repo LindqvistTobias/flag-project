@@ -36,11 +36,9 @@
     width: 100%;
     transition: all 0.3s ease;
     position: relative;
+    align-items: center;  
   }
-  
-  .dropdown-select.selected {
-    align-items: center;
-  }
+    
   
   .dropdown-label {
     font-size: 12px;
@@ -62,6 +60,8 @@
     position: relative;
     left: 0;
   }
+
+
   
   .dropdown:hover {
     opacity: 1;
