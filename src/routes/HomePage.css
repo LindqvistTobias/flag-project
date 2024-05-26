@@ -13,16 +13,23 @@
   margin: 20px 0px;
   width: 100%;
 }
- 
+
+.country-card-container {
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;        
+  gap: 32px;      
+}
 
 
 
 @media (max-width: 1200px) {
   .body-container {
     width: 90%;
-    align-items: center;
-    
+    align-items: center;    
   }
+  
+
   .searchbar-dropdown-container {      
       justify-content: center;
       align-items: center;
@@ -40,3 +47,4 @@
       height: 150px;
   }    
 }
+

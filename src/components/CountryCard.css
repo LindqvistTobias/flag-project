@@ -2,9 +2,7 @@
     display: flex;
     flex-flow: wrap;
     width: 100%;        
-    gap: 32px;  
-     
-     
+    gap: 32px;       
 }
 
 .country-container {
@@ -17,8 +15,7 @@
     margin-bottom: 1.5em;
     border-radius: 7px;
     overflow: hidden; /* Ensure content inside doesn't overflow */    
-    flex: 0 0 23%;
-    
+    flex: 0 0 23%;    
   }
   
 .country-container:hover {
