@@ -8,9 +8,7 @@ const CountryCard = ({ countries, allCountries }) => {
 
   const handleClick = (country) => {
     navigate(`/${country.name.common}`, { state: { country, countries: allCountries } });
-  };
-
-  console.log('CountryCard rendering with countries:', countries);
+  };  
 
   return (
     <div className='country-cards-container'>                       
