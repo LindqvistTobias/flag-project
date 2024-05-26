@@ -7,10 +7,9 @@ import {
   getAllCountriesByRegion,
   searchCountriesByName,
 } from "../components/Api";
-
+import FooterBar from "../components/FooterBar";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonCountryCard from "../components/SkeletonCountryCard";
-
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
@@ -24,11 +23,13 @@ const HomePage = () => {
       try {
         const data = await getAllCountriesByRegion(selectedRegion);
         setCountries(data);
+        setIsLoading(false); // Moved inside the try block to ensure it happens after fetching
       } catch (error) {
         console.error("Error fetching countries", error);
+        setIsLoading(false); // Also set to false in case of an error
       }
     };
-    setIsLoading(false); 
+
     fetchCountries();
   }, [selectedRegion]);
 
@@ -51,11 +52,12 @@ const HomePage = () => {
   };
 
   const toggleLoadingState = () => {
-    setIsLoading((prevLoading) => !prevLoading); // Toggle isLoading state
+    setIsLoading((prevLoading) => !prevLoading);
   };
 
   return (
-    <div className="body-container">
+    <div>
+      <div className="body-container">
       <div className="searchbar-dropdown-container">
         <SearchBar onSearch={handleSearch} />
         <RegionDropdown onRegionChange={handleRegionChange} />
@@ -65,10 +67,8 @@ const HomePage = () => {
       ) : (
         <CountryCard countries={filteredCountries} allCountries={countries} />
       )}
-
-      <div>
-        <button onClick={toggleLoadingState}>Toggle Loading State</button>
-      </div>
+    </div>
+    <FooterBar isLoading={isLoading} toggleLoadingState={toggleLoadingState}/> 
     </div>
   );
 };

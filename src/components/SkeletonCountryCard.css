@@ -31,11 +31,13 @@
 
 .skeleton-country-card-text {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 10px;
+  flex-direction: column;  
+  margin-top: 5px;
   margin-left: 15px;
+  height: 45%;   
 }
+
+
 
 span {
     margin-right: -3px;
@@ -43,7 +45,9 @@ span {
 
 .skeleton-country-card-text-name {
   display: flex;
-  gap: 3px;
+  gap: 8px;
+  font-weight: 600;   
+  opacity: 0.8;
 }
 
 @media (max-width: 1200px) {

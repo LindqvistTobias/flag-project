@@ -7,34 +7,103 @@ export const useDarkMode = () => useContext(DarkModeContext);
 export const DarkModeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
+  const defaultLightColors = ['#FFFFFF', '#333333', '#F2F2F2', '#66666620'];
+  const defaultDarkColors = ['#202C36', '#F2F2F2', '#435668', '#FFFFFF30'];
 
   const applyTheme = (darkMode) => {
     const root = document.documentElement;
     if (darkMode) {
-      root.style.setProperty('--background-color', '#202C36');
-      root.style.setProperty('--text-color', '#F2F2F2');
-      root.style.setProperty('--component-color', '#435668');
+      root.style.setProperty('--background-color', root.style.getPropertyValue('--background-color-dark'));
+      root.style.setProperty('--text-color', root.style.getPropertyValue('--text-color-dark'));
+      root.style.setProperty('--component-color', root.style.getPropertyValue('--component-color-dark'));
+      root.style.setProperty('--highlight-color', root.style.getPropertyValue('--highlight-color-dark'));
     } else {
-      root.style.setProperty('--background-color', '#FFFFFF');
-      root.style.setProperty('--text-color', '#333333');
-      root.style.setProperty('--component-color', '#F2F2F2');
+      root.style.setProperty('--background-color', root.style.getPropertyValue('--background-color-light'));
+      root.style.setProperty('--text-color', root.style.getPropertyValue('--text-color-light'));
+      root.style.setProperty('--component-color', root.style.getPropertyValue('--component-color-light'));
+      root.style.setProperty('--highlight-color', root.style.getPropertyValue('--highlight-color-light'));
     }
   };
 
-  // Apply theme on initial render
-  applyTheme(isDarkMode);
+  const updateTheme = (lightColors, darkColors) => {
+    const root = document.documentElement;
+    const [lightBackground, lightText, lightComponent, lightHighlight] = lightColors;
+    const [darkBackground, darkText, darkComponent, darkHighlight] = darkColors;
 
-  // Apply theme whenever isDarkMode changes
+    root.style.setProperty('--background-color-light', lightBackground);
+    root.style.setProperty('--text-color-light', lightText);
+    root.style.setProperty('--component-color-light', lightComponent);
+    root.style.setProperty('--highlight-color-light', lightHighlight);
+
+    root.style.setProperty('--background-color-dark', darkBackground);
+    root.style.setProperty('--text-color-dark', darkText);
+    root.style.setProperty('--component-color-dark', darkComponent);
+    root.style.setProperty('--highlight-color-dark', darkHighlight);
+
+    applyTheme(isDarkMode);
+  };
+
   useEffect(() => {
+    updateTheme(defaultLightColors, defaultDarkColors);
     applyTheme(isDarkMode);
   }, [isDarkMode]);
 
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
   return (
-    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode, updateTheme }}>
       {children}
     </DarkModeContext.Provider>
   );
 };
+
+
+
+
+
+
+
+// import React, { createContext, useContext, useState, useEffect } from 'react';
+
+// const DarkModeContext = createContext();
+
+// export const useDarkMode = () => useContext(DarkModeContext);
+
+// export const DarkModeProvider = ({ children }) => {
+//   const [isDarkMode, setIsDarkMode] = useState(true);
+
+//   const toggleDarkMode = () => {
+//     setIsDarkMode((prevMode) => !prevMode);
+//   };
+
+//   const applyTheme = (darkMode) => {
+//     const root = document.documentElement;
+//     if (darkMode) {
+//       root.style.setProperty('--background-color', '#202C36');
+//       root.style.setProperty('--text-color', '#F2F2F2');
+//       root.style.setProperty('--component-color', '#435668');
+//       root.style.setProperty('--highlight-color', '#FFFFFF30');
+//     } else {
+//       root.style.setProperty('--background-color', '#FFFFFF');
+//       root.style.setProperty('--text-color', '#333333');
+//       root.style.setProperty('--component-color', '#F2F2F2');
+//       root.style.setProperty('--highlight-color', '#66666620');
+//     }
+//   };
+
+//   // Apply theme on initial render
+//   applyTheme(isDarkMode);
+
+//   // Apply theme whenever isDarkMode changes
+//   useEffect(() => {
+//     applyTheme(isDarkMode);
+//   }, [isDarkMode]);
+
+//   return (
+//     <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+//       {children}
+//     </DarkModeContext.Provider>
+//   );
+// };

@@ -5,9 +5,10 @@ import "./CountryPage.css";
 import arrowLeftWhite from "../assets/arrow-left.svg";
 import arrowLeftDark from "../assets/arrow-left-dark.svg";
 import { useDarkMode } from "../../DarkModeContext";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-
+import { Skeleton } from "@mui/material";
+import "react-loading-skeleton/dist/skeleton.css";
+import FooterBar from "../components/FooterBar";
+import "../SkeletonBlink.css";
 
 const CountryPage = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const CountryPage = () => {
       const response = await axios.get(
         `https://restcountries.com/v3.1/alpha/${cca3Code}`
       );
-  
+
       // Check if response data is valid and contains the country name
       if (
         Array.isArray(response.data) &&
@@ -58,7 +59,7 @@ const CountryPage = () => {
         response.data[0].name.common
       ) {
         const matchedCountryName = response.data[0].name.common;
-  
+
         // Navigate to the matched country's route
         navigate(`/${matchedCountryName}`);
       } else {
@@ -72,21 +73,21 @@ const CountryPage = () => {
   };
 
   const toggleLoadingState = () => {
-    setIsLoading((prevLoading) => !prevLoading); // Toggle isLoading state
-  };  
+    setIsLoading((prevLoading) => !prevLoading);
+  };
 
   const getFirstNativeNameCommon = () => {
     const { nativeName } = currentCountry?.name || {};
     const firstNativeName = Object.values(nativeName || {})[0];
-    return firstNativeName?.common || 'Unknown Native Name';
-};
+    return firstNativeName?.common || "Unknown Native Name";
+  };
 
-const getFirstLanguageName = () => {
+  const getFirstLanguageName = () => {
     const languageEntries = Object.entries(currentCountry?.languages || {});
-    return languageEntries.length > 0 ? languageEntries[0][1] || 'Unknown Language' : 'Unknown Language';
-};
-
-
+    return languageEntries.length > 0
+      ? languageEntries[0][1] || "Unknown Language"
+      : "Unknown Language";
+  };
 
   return (
     <div className="main-container">
@@ -96,46 +97,117 @@ const getFirstLanguageName = () => {
       </div>
       <div className="card-container">
         {isLoading ? (
-        <Skeleton width={600} height={300} /> // Display skeleton while loading
-          ) : (
-            <img
-              className="flag-image"
-              src={currentCountry?.flags?.svg || ''}
-              alt={`Flag of ${currentCountry?.name?.common || ''}`}
-            />
-          )}
+          <Skeleton
+            className="blinking-skeleton"
+            variant="square"
+            width={600}
+            height={300}
+          /> // Display skeleton while loading
+        ) : (
+          <img
+            className="flag-image"
+            src={currentCountry?.flags?.svg || ""}
+            alt={`Flag of ${currentCountry?.name?.common || ""}`}
+          />
+        )}
         <div className="text-container">
-          <h2>{isLoading ? <Skeleton width={150} height={30}/> : currentCountry.name.common}</h2>
+          <h2>
+            {isLoading ? (
+              <Skeleton className="blinking-skeleton" width={250} height={80} />
+            ) : (
+              currentCountry.name.common
+            )}
+          </h2>
           <div className="text-info-container">
             <div className="text-info-small-container">
               <div className="text-info">
-                <p>Population:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.population}
+                <p>Population:</p>{" "}
+                {isLoading ? (
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={75}
+                    height={25}
+                  />
+                ) : (
+                  currentCountry.population
+                )}
               </div>
               <div className="text-info">
-                <p>Region:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.region} 
+                <p>Region:</p>{" "}
+                {isLoading ? (
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={75}
+                    height={25}
+                  />
+                ) : (
+                  currentCountry.region
+                )}
               </div>
               <div className="text-info">
-                <p>Capital:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry?.capital}
+                <p>Capital:</p>{" "}
+                {isLoading ? (
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={75}
+                    height={25}
+                  />
+                ) : (
+                  currentCountry?.capital
+                )}
               </div>
               <div className="text-info">
                 <p>Native name:</p>{" "}
-                {isLoading ? <Skeleton width={75} height={15}/> : getFirstNativeNameCommon()}
+                {isLoading ? (
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={75}
+                    height={25}
+                  />
+                ) : (
+                  getFirstNativeNameCommon()
+                )}
               </div>
             </div>
-            <div className="text-info-small-container">  
+            <div className="text-info-small-container">
               <div>
                 <div className="text-info">
-                  <p>Top Level Domain:</p> {isLoading ? <Skeleton width={75} height={15}/> : currentCountry.tld}
+                  <p>Top Level Domain:</p>{" "}
+                  {isLoading ? (
+                    <Skeleton
+                      className="blinking-skeleton"
+                      width={75}
+                      height={25}
+                    />
+                  ) : (
+                    currentCountry.tld
+                  )}
                 </div>
                 <div className="text-info">
                   <p>Currencies:</p>{" "}
-                  {isLoading ? <Skeleton width={75} height={15}/> : Object.values(currentCountry.currencies || {})
-                    .map((currency) => currency.name)
-                    .join(", ") || "Unknown Currency"}
+                  {isLoading ? (
+                    <Skeleton
+                      className="blinking-skeleton"
+                      width={75}
+                      height={25}
+                    />
+                  ) : (
+                    Object.values(currentCountry.currencies || {})
+                      .map((currency) => currency.name)
+                      .join(", ") || "Unknown Currency"
+                  )}
                 </div>
                 <div className="text-info">
                   <p>Languages:</p>{" "}
-                  {isLoading ? <Skeleton width={75} height={15}/> : getFirstLanguageName()}
+                  {isLoading ? (
+                    <Skeleton
+                      className="blinking-skeleton"
+                      width={75}
+                      height={25}
+                    />
+                  ) : (
+                    getFirstLanguageName()
+                  )}
                 </div>
               </div>
             </div>
@@ -143,36 +215,53 @@ const getFirstLanguageName = () => {
           <div className="border-countries">
             <p>Border Countries:</p>
             <ul>
-            {isLoading ? (
-                  <div className="skeleton"><Skeleton count={5} width={55} height={30} /></div>
-                ) : (
-                  currentCountry.borders && currentCountry.borders.length > 0 ? (
-                    currentCountry.borders.map((border) => (
-                      <li key={border}>
-                        <button
-                          className="border"
-                          onClick={() => handleBorderCountryClick(border)}
-                        >
-                          {border || "Unknown Country"}
-                        </button>
-                      </li>
-                    ))
-                  ) : (
-                    <li>No neighbors</li>
-                  )
-                )}
+              {isLoading ? (
+                <div className="border-skeleton">
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={45}
+                    height={40}
+                  />
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={45}
+                    height={40}
+                  />
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={45}
+                    height={40}
+                  />
+                  <Skeleton
+                    className="blinking-skeleton"
+                    width={45}
+                    height={40}
+                  />
+                </div>
+              ) : currentCountry.borders &&
+                currentCountry.borders.length > 0 ? (
+                currentCountry.borders.map((border) => (
+                  <li key={border}>
+                    <button
+                      className="border"
+                      onClick={() => handleBorderCountryClick(border)}
+                    >
+                      {border || "Unknown Country"}
+                    </button>
+                  </li>
+                ))
+              ) : (
+                <li>No neighbors</li>
+              )}
             </ul>
           </div>
         </div>
-        
       </div>
 
-          <div>
-          <button onClick={toggleLoadingState}>
-            Toggle Loading State
-          </button>
-          </div>
-
+      <FooterBar
+        isLoading={isLoading}
+        toggleLoadingState={toggleLoadingState}
+      />
     </div>
   );
 };

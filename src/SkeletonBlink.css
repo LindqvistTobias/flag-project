@@ -1,0 +1,15 @@
+@keyframes custom-blink {
+  0% {
+    background-color: #525d69;
+  }
+  50% {
+    background-color: #617381;
+  }
+  100% {
+    background-color: #525d69;
+  }
+}
+
+.skeleton-cards-container .skeleton-container .blinking-skeleton .main-container {
+  animation: custom-blink 1.5s infinite ease-in-out;
+}

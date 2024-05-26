@@ -28,13 +28,13 @@ body {
     padding: 10px;
     border-radius: 5px;
     outline: none;    
-    font-size: 1em;
-    transition: 0.5s;
+    font-size: 1em;    
     opacity: 0.6;
 }
 
 .searchbar-container input:hover {
     opacity: 1;
+    border: 2px solid var(--text-color);    
 }
 
 .searchbar-container span {
@@ -60,5 +60,5 @@ body {
 
 .searchbar-container input:valid, 
 .searchbar-container input:focus {    
-    opacity: 1; 
+    opacity: 1;     
 }
