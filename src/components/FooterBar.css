@@ -7,7 +7,7 @@
   height: 45px;
   background-color: var(--component-color);
   margin: auto;
-  border-radius: 5px;
+  border-radius: 7px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
@@ -32,9 +32,9 @@ button:hover {
 }
 
 .button-color.highlight {
-    background-color: var(--highlight-color); /* Highlight outline */
+    background-color: var(--highlight-color);
+    border-radius: 5px; 
   }
-
 
 
 .hourglass {

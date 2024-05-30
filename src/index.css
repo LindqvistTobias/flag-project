@@ -2,8 +2,7 @@
   font-family: 'Open Sans', sans-serif;  
   font-weight: 300;  
 
-  --component-color: #2B3844; /* Example primary color */
-  --background-color: #202C36; /* Example secondary color */
+  --component-color: #2B3844; 
   --text-color: #F2F2F2;
 
   font-synthesis: none;

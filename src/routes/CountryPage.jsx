@@ -51,7 +51,6 @@ const CountryPage = () => {
         `https://restcountries.com/v3.1/alpha/${cca3Code}`
       );
 
-      // Check if response data is valid and contains the country name
       if (
         Array.isArray(response.data) &&
         response.data.length > 0 &&
@@ -67,8 +66,6 @@ const CountryPage = () => {
       }
     } catch (error) {
       console.error("Error fetching border country data:", error.message);
-      // Handle error if the border country data cannot be fetched
-      // Display an error message or take appropriate actions
     }
   };
 
@@ -102,7 +99,7 @@ const CountryPage = () => {
             variant="square"
             width={600}
             height={300}
-          /> // Display skeleton while loading
+          />
         ) : (
           <img
             className="flag-image"

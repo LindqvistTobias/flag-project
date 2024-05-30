@@ -23,10 +23,10 @@ const HomePage = () => {
       try {
         const data = await getAllCountriesByRegion(selectedRegion);
         setCountries(data);
-        setIsLoading(false); // Moved inside the try block to ensure it happens after fetching
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching countries", error);
-        setIsLoading(false); // Also set to false in case of an error
+        setIsLoading(false);
       }
     };
 
@@ -58,17 +58,20 @@ const HomePage = () => {
   return (
     <div>
       <div className="body-container">
-      <div className="searchbar-dropdown-container">
-        <SearchBar onSearch={handleSearch} />
-        <RegionDropdown onRegionChange={handleRegionChange} />
+        <div className="searchbar-dropdown-container">
+          <SearchBar onSearch={handleSearch} />
+          <RegionDropdown onRegionChange={handleRegionChange} />
+        </div>
+        {isLoading ? (
+          <SkeletonCountryCard />
+        ) : (
+          <CountryCard countries={filteredCountries} allCountries={countries} />
+        )}
       </div>
-      {isLoading ? (
-        <SkeletonCountryCard />
-      ) : (
-        <CountryCard countries={filteredCountries} allCountries={countries} />
-      )}
-    </div>
-    <FooterBar isLoading={isLoading} toggleLoadingState={toggleLoadingState}/> 
+      <FooterBar
+        isLoading={isLoading}
+        toggleLoadingState={toggleLoadingState}
+      />
     </div>
   );
 };
