@@ -1,2 +1,2 @@
-- [Github repository](https://ditt-repo-här)
-- [Deployat projekt](https://ditt-projekt-här)
+- [Github repository](https://github.com/LindqvistTobias/flag-project/)
+- [Deployat projekt](https://voluble-conkies-527263.netlify.app/)

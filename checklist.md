@@ -1,6 +1,6 @@
 För att få godkänt måste min inlämning stämma överens med dessa punkter:
 
-- [ ] Min app efterliknar designen till punkt och pricka. Om du tittar på min app och sedan på prototypbilderna är det svårt att se någon skillnad.
+- [ x ] Min app efterliknar designen till punkt och pricka. Om du tittar på min app och sedan på prototypbilderna är det svårt att se någon skillnad.
 - [ x ] Jag följer instruktionerna i style-guide.md
 - [ x ] Min app är uppbyggd av komponenter. Den inkluderar åtminstonde dessa:
   - [ x ] Navbar
@@ -15,8 +15,7 @@ För att få godkänt måste min inlämning stämma överens med dessa punkter:
 - [ x ] Om en användare trycker på ett land från hemmaskärmen kommer de till en detaljerad vy av det landet.
 - [ x ] I detaljvyn visas grannländer. Användaren kan trycka på dessa för att navigera vidare till det valda landet.
 - [ x ] Användaren kan växla mellan light och dark mode via navbaren.
-- [ ] När data laddas in i appen visas ett loading state för användaren.
-- [  ] Användaren kan navigera genom appen med hjälp av routes. D.v.s. användaren kan skriva i URL:en för att hoppa mellan de olika sidorna i appen.
-- [ ] Jag har deployat mitt projekt. En länk till projektet finns i links.md.
-- [ ] Jag har laddat upp mitt projekt på Github. En länk till projektet finns i links.md.
-npm 
+- [ x ] När data laddas in i appen visas ett loading state för användaren.
+- [ x ] Användaren kan navigera genom appen med hjälp av routes. D.v.s. användaren kan skriva i URL:en för att hoppa mellan de olika sidorna i appen.
+- [ x ] Jag har deployat mitt projekt. En länk till projektet finns i links.md.
+- [ x ] Jag har laddat upp mitt projekt på Github. En länk till projektet finns i links.md.
