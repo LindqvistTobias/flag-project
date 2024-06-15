@@ -255,7 +255,7 @@ const CountryPage = () => {
         </div>
       </div>
 
-      <FooterBar
+      <FooterBar        
         isLoading={isLoading}
         toggleLoadingState={toggleLoadingState}
       />

@@ -9,7 +9,14 @@ export const getAllCountriesByRegion = async (region) => {
       throw new Error('Failed to fetch countries');
     }
     const data = await response.json();
-    return data;
+    
+    const sortedData = data.sort((a, b) => {
+      const nameA = a.name.common || ""; 
+      const nameB = b.name.common || ""; 
+      return nameA.localeCompare(nameB);
+    });
+
+    return sortedData;
   } catch (error) {
     console.error('Error fetching countries by region', error);
     return [];

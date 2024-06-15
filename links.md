@@ -1,2 +1,2 @@
 - [Github repository](https://github.com/LindqvistTobias/flag-project/)
-- [Deployat projekt](https://voluble-conkies-527263.netlify.app/)
+- [Deployat projekt](https://tl-flag-project.netlify.app/)

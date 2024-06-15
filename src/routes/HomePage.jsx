@@ -31,7 +31,7 @@ const HomePage = () => {
     };
 
     fetchCountries();
-  }, [selectedRegion]);
+  }, []);
 
   useEffect(() => {
     const filteredCountries = searchCountriesByName(

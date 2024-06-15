@@ -42,7 +42,7 @@ const FooterBar = ({ isLoading, toggleLoadingState }) => {
           onClick={() =>
             changeColor(
               ["#EEEEEE", "#444444", "#CCCCCC", "#88888820"],
-              ["#333333", "#BBBBBB", "#222222", "#66666640"],
+              ["#333333", "#d9bd43", "#222222", "#66666640"],
               "color-two"
             )
           }
@@ -56,8 +56,8 @@ const FooterBar = ({ isLoading, toggleLoadingState }) => {
           id="color-three"
           onClick={() =>
             changeColor(
-              ["#DDDDDD", "#222222", "#AAAAAA", "#44444410"],
-              ["#111111", "#999999", "#000000", "#33333320"],
+              ["#DDDDDD", "#222222", "#AAAAAA", "#44444420"],
+              ["#111111", "#ff523b", "#000000", "#33333320"],
               "color-three"
             )
           }
